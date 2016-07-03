@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <stdlib.h>
 
-#include "../include/utility_function.h"
+//#include "../include/utility_function.h"
 // #include "img_uti.h"
 
 int main(int argc, char* argv[]){
@@ -17,7 +17,7 @@ int main(int argc, char* argv[]){
     }
 
     std::string video_name = argv[1];
-
+	std::vector<std::vector<int>> a;
     std::cout<<video_name<<std::endl;
     // std::vector<std::string> split_name = utility::SplitString(video_name); 
 

@@ -4,15 +4,22 @@ MESSAGE("Building Annotation Tool for ${SYSTEM_NAME}")
 MESSAGE(STATUS "CMAKE_TOOLCHAIN_FILE='${CMAKE_TOOLCHAIN_FILE}'")
 MESSAGE(STATUS "CMAKE_SOURCE_DIR='${CMAKE_SOURCE_DIR}'")
 
-# find_package( OpenCV REQUIRED )
+include_directories(../include
+					/usr/local/include)
+
+set(BOOST_ROOT "/usr/localCellar/boost")
+set(BOOST_INCLUDE_DIRS "${BOOST_ROOT}/include")
+set(BOOST_LIBRARY_DIRS "${BOOST_ROOT}/lib")
+
+find_package( OpenCV REQUIRED )
 # find_package( Boost COMPONENTS system filesystem REQUIRED)
 # CMAKE_POLICY(SET CMP0015 NEW)
 
 link_directories(/usr/local/lib)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
+set(CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libc++")
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 
-include_directories(../include)
 
 file(GLOB C_FILE
     "../lib/*.cc"
@@ -21,15 +28,17 @@ file(GLOB C_FILE
 file(GLOB SRC_LIST
     "../src/*.cpp"
 )
-file(GLOB ALL_LIB
-	opencv_core
-	opencv_features2d
-	opencv_highgui
-	opencv_imgproc
-	opencv_video
-	opencv_objdetect
-	boost_filesystem
-	)
+set(ALL_LIB "${OpenCV_LIBS}")
+
+# file(GLOB ALL_LIB
+# 	opencv_core
+# 	opencv_features2d
+# 	opencv_highgui
+# 	opencv_imgproc
+# 	opencv_video
+# 	opencv_objdetect
+# 	# boost_filesystem
+# 	)
 
 # add_library(shared_lib SHARED ${C_FILE})
 
